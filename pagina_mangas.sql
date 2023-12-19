@@ -3,7 +3,7 @@ create database pagina_mangas;
 use pagina_mangas;
 
 create table usuario(
-    id_usu int(10),
+    id_usu int(10) AUTO_INCREMENT,
     nombre_usu varchar(50),
     email_usu varchar(100),
     contrasena varchar(255),
@@ -11,7 +11,7 @@ create table usuario(
 );
 
 create table proyectos(
-    id_proyecto int(10),
+    id_proyecto int(10) AUTO_INCREMENT,
     nombre_proyecto varchar(200),
     sub_nombre_proyecto varchar(200),
     descripcion text,
@@ -25,7 +25,7 @@ create table proyectos(
     vistas int;
 )
 CREATE TABLE generos (
-    id_genero INT(10),
+    id_genero INT(10) AUTO_INCREMENT,
     nombre_genero VARCHAR(50)
 );
 
@@ -35,4 +35,12 @@ CREATE TABLE proyectos_generos (
     PRIMARY KEY (id_proyecto, id_genero),
     FOREIGN KEY (id_proyecto) REFERENCES proyectos(id_proyecto),
     FOREIGN KEY (id_genero) REFERENCES generos(id_genero)
+);
+CREATE TABLE favoritos (
+    id_favorito INT(10) AUTO_INCREMENT,
+    id_usu INT(10),
+    id_proyecto INT(10),
+    PRIMARY KEY (id_favorito),
+    FOREIGN KEY (id_usu) REFERENCES usuario(id_usu),
+    FOREIGN KEY (id_proyecto) REFERENCES proyectos(id_proyecto)
 );
