@@ -1,8 +1,3 @@
-<?php
-include("conexion/conexion.php");
-include("conexion/controlador_login.php");
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,12 +19,18 @@ include("conexion/controlador_login.php");
     <div class="wrapper">
         <form action="conexion/controlador_login.php" method="POST">
             <h1><strong>Login</strong></h1>
+            <hr>
+            <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="alert alert-primary"><strong>Acceso denegado</strong></div>';
+                }
+                ?>
             <div class="input-box">
-                <input type="text" placeholder="Correo Electronico" name="correo" id="correo" required>
+                <input type="text" name="email_usu" placeholder="Correo Electronico" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
+                <input type="password" placeholder="Contraseña" name="contrasena" required>
                 <i class='bx bxs-lock'></i>
             </div>
             <div class="remember-forgot">
@@ -39,7 +40,7 @@ include("conexion/controlador_login.php");
                 <a href="#">Olvide mi contraseña</a>
             </div>
 
-            <button type="submit" class="btn" name="btningresar">Iniciar Sesion</button>
+            <button type="submit" class="btn">Iniciar Sesion</button>
 
             <div class="register-link">
                 <p>¿No tienes Cuenta?, <a href="register.php">Registrate</a></p>

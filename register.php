@@ -13,6 +13,12 @@
     <div class="wrapper">
         <form action="" method="POST">
             <h1><strong>Registro</strong></h1>
+            <hr>
+            <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="alert alert-primary"><strong>Un Dato ya esta registrado</strong></div>';
+                }
+                ?>
             <div class="input-box">
                 <input type="text" placeholder="Usuarios" name="usuario" id="usuario" required>
                 <i class='bx bxs-user'></i>

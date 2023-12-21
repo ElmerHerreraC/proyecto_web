@@ -1,18 +1,26 @@
 <?php
-include("conexion.php");
-    if (!empty($_POST["btningresar"])) {
-        if (empty($_POST["correo"]) || empty($_POST["contrasena"])) {
-            echo '<div class="alert alert-danger">LOS CAMPOS ESTÁN VACÍOS</div>';
-        } else {
-            $correo = $_POST["correo"];
-            $contrasena = $_POST["contrasena"];
-            $sql = $conexion->query("SELECT * FROM usuarios WHERE correo='$correo' AND contrasena='$contrasena'");
-            if ($sql->num_rows > 0) {
-                header("Location: inicio.php");
-                exit();
-            } else {
-                echo '<div class="alert alert-danger">ACCESO DENEGADO</div>';
-            }
-        }
+    include 'conexion.php';
+    $bean=new Conexion();
+
+    $correo=$_POST['email_usu'];
+    $contrasena=$_POST['contrasena'];
+
+    $validar_login = mysqli_query($bean->getConexion(),"SELECT email_usu, contrasena FROM usuario WHERE email_usu='$correo' AND contrasena='$contrasena'");
+
+    if(mysqli_num_rows($validar_login) > 0){
+        echo '
+            <script>
+                window.location = "../index.php";
+            </script>
+        ';
+        exit;
+    }else{
+        echo '
+            <script>
+                window.location = "../login.php?error";
+            </script>
+        ';
+        exit;
     }
+
 ?>
