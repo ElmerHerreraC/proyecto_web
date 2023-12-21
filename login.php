@@ -17,7 +17,7 @@
 <body>
 
     <div class="wrapper">
-        <form action="conexion/controlador_login.php" method="POST">
+        <form action="conexion/validar_login.php" method="POST">
             <h1><strong>Login</strong></h1>
             <hr>
             <?php
