@@ -1,6 +1,6 @@
-create database pagina_mangas;
+create database inkspiral;
 
-use pagina_mangas;
+use inkspiral;
 
 create table usuario(
     id_usu int(10) AUTO_INCREMENT,
