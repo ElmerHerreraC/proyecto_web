@@ -39,7 +39,7 @@
             </div>
             <div class="input-box">
                 <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
-                <i class='bx bxs-lock'></i>
+                <i class='bx bxs-show'></i>
             </div>
             <button type="submit" class="btn">Registrar</button>
 
@@ -52,20 +52,23 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <script>
-        const pass = document.getElementById("contrasena");
-        const icon = document.querySelector(".bx");
+        document.addEventListener("DOMContentLoaded", function() {
+            const pass = document.getElementById("contrasena");
+            const icon = document.querySelector(".bxs-show");
 
-        pass.addEventListener("input", e => {
-            if (pass.value.length > 0) {
-                icon.classList.remove('bxs-lock');
-                icon.classList.add('bx-show-alt');
-            } else {
-                icon.classList.add('bxs-lock');
-                icon.classList.remove('bx-show-alt');
-            }
+            icon.addEventListener("click", function() {
+                if (pass.type === "password") {
+                    pass.type = "text";
+                    icon.classList.remove('bxs-show');
+                    icon.classList.add('bxs-hide');
+                } else {
+                    pass.type = "password";
+                    icon.classList.add('bxs-show');
+                    icon.classList.remove('bxs-hide');
+                }
+            });
         });
     </script>
-
 </body>
 
 </html>

@@ -30,8 +30,8 @@
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" name="contrasena" required>
-                <i class='bx bxs-lock'></i>
+                <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
+                <i class='bx bxs-show'></i>
             </div>
             <div class="remember-forgot">
                 <label class="white-checkbox">
@@ -47,6 +47,24 @@
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pass = document.getElementById("contrasena");
+            const icon = document.querySelector(".bxs-show");
+
+            icon.addEventListener("click", function() {
+                if (pass.type === "password") {
+                    pass.type = "text";
+                    icon.classList.remove('bxs-show');
+                    icon.classList.add('bxs-hide');
+                } else {
+                    pass.type = "password";
+                    icon.classList.add('bxs-show');
+                    icon.classList.remove('bxs-hide');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
