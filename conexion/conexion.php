@@ -1,9 +1,18 @@
 <?php
-    $conexion=new mysqli("localhost","root","","inkspiral",3307);
-    $conexion->set_charset("utf8");
-
-    if(mysqli_connect_errno()){
-        echo 'Conexion Fallida : ', mysqli_connect_errno();
-        exit();
+class Conexion{
+    function getConexion(){
+        //variables
+        $url="localhost:3307";
+        $user="root";
+        $pass="";
+        $bd="inkspiral";
+        $cn=mysqli_connect($url,$user,$pass,$bd);
+        if(mysqli_connect_error()){
+            echo 'error nro: '.mysqli_connect_errno();
+        }
+        return $cn;
     }
+
+
+}
 ?>

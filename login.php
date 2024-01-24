@@ -1,8 +1,3 @@
-<?php
-include("conexion/conexion.php");
-include("conexion/controlador_login.php");
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,15 +17,21 @@ include("conexion/controlador_login.php");
 <body>
 
     <div class="wrapper">
-        <form action="conexion/controlador_login.php" method="POST">
+        <form action="conexion/validar_login.php" method="POST">
             <h1><strong>Login</strong></h1>
+            <hr>
+            <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="alert alert-primary"><strong>Acceso denegado</strong></div>';
+                }
+                ?>
             <div class="input-box">
-                <input type="text" placeholder="Correo Electronico" name="correo" id="correo" required>
+                <input type="text" name="email_usu" placeholder="Correo Electronico" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
                 <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" required>
-                <i class='bx bxs-lock'></i>
+                <i class='bx bxs-show'></i>
             </div>
             <div class="remember-forgot">
                 <label class="white-checkbox">
@@ -39,13 +40,31 @@ include("conexion/controlador_login.php");
                 <a href="#">Olvide mi contraseña</a>
             </div>
 
-            <button type="submit" class="btn" name="btningresar">Iniciar Sesion</button>
+            <button type="submit" class="btn">Iniciar Sesion</button>
 
             <div class="register-link">
                 <p>¿No tienes Cuenta?, <a href="register.php">Registrate</a></p>
             </div>
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pass = document.getElementById("contrasena");
+            const icon = document.querySelector(".bxs-show");
+
+            icon.addEventListener("click", function() {
+                if (pass.type === "password") {
+                    pass.type = "text";
+                    icon.classList.remove('bxs-show');
+                    icon.classList.add('bxs-hide');
+                } else {
+                    pass.type = "password";
+                    icon.classList.add('bxs-show');
+                    icon.classList.remove('bxs-hide');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
